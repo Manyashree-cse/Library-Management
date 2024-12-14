@@ -1,0 +1,41 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Library Management System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="container">
+    <br>
+    <h1 class="text-center"><u>Admin Login</u></h1><br>
+    <p><b>Note:</b> Only the admin can log in from here. No student will be allowed to log in.</p>
+    <form method="POST"> {% csrf_token %}
+
+        <div class="row mt-4">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Username</i></label>
+                <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" maxlength="15" minlength="5" required>
+                <small class="form-text text-muted">Username must be between 5 and 15 characters.</small>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Password</i></label>
+                <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" maxlength="15" minlength="5" required>
+                <small class="form-text text-muted">Password must be between 5 and 15 characters.</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        {% if alert %}
+        alert("Invalid Username or Password.");
+        document.location = "/admin_login";
+        {% endif %}
+    });
+</script>
+{% endblock %}
